@@ -4,11 +4,12 @@ using PersonServices.Model;
 
 namespace PersonServices.Mapping
 {
-    public class GeneralMapping:Profile
+    public class GeneralMapping : Profile
     {
         public GeneralMapping()
         {
-            CreateMap<Person,PersonDto>().ReverseMap();
+            CreateMap<Person, PersonDto>().ReverseMap();
+            CreateMap<ContactInfo, ContactInfoDto>().ReverseMap();
 
 
         }

@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
