@@ -1,7 +1,8 @@
 ﻿using PersonServices.Dto;
 using PersonServices.Responses;
 
-namespace PersonServices.Services
+namespace PersonServices.Interfaces
+
 {
     public interface IPersonService
     {

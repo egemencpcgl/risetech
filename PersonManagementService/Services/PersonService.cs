@@ -4,6 +4,7 @@ using PersonServices.Model;
 using Microsoft.EntityFrameworkCore;
 using PersonServices.Context;
 using PersonServices.Responses;
+using PersonServices.Interfaces;
 
 namespace PersonServices.Services
 {

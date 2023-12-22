@@ -1,11 +1,6 @@
 ﻿using PersonServices.Dto;
-using PersonServices.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using PersonServices.Context;
-using PersonServices.Responses;
-using PersonServices.Services;
+using PersonServices.Interfaces;
 
 namespace PersonServices.Controllers
 {
