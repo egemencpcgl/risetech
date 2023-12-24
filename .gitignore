@@ -12,3 +12,7 @@ PersonManagementService/obj
 PersonManagementService/.vs
 ReportManagementService/bin
 ReportManagementService/obj
+TestReportService/bin
+TestReportService/obj
+TestPersonService/bin
+TestPersonService/obj

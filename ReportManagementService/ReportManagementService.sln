@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportManagementService", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqttClient", "..\MQTTLib\MqttClient\MqttClient.csproj", "{1847D287-193F-40C4-969E-0F7AE6A22FC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestReportService", "..\TestReportService\TestReportService.csproj", "{B3A56034-9D1A-472A-9003-DAE867BC2F69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1847D287-193F-40C4-969E-0F7AE6A22FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1847D287-193F-40C4-969E-0F7AE6A22FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1847D287-193F-40C4-969E-0F7AE6A22FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A56034-9D1A-472A-9003-DAE867BC2F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A56034-9D1A-472A-9003-DAE867BC2F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A56034-9D1A-472A-9003-DAE867BC2F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A56034-9D1A-472A-9003-DAE867BC2F69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
