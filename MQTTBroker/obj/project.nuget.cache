@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "5maBXTQlQ3l/sT8bQz4/lg+BpgRxwgqJlqXY1EgGvNRqgqCFNBaT1tWnqj5a+5zx4lJM+hZtBb6/qbDvEhLa/g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\iotech\\Desktop\\RISETECH\\Rise\\MQTTBroker\\MQTTBroker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\iotech\\.nuget\\packages\\mqttnet\\4.3.3.952\\mqttnet.4.3.3.952.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://192.168.3.27:8081/api/v4/groups/16/-/packages/nuget/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
