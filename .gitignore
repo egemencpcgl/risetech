@@ -1,0 +1,14 @@
+.vs
+MQTTBroker/.vs
+MQTTBroker/bin
+MQTTBroker/obj
+MQTTLib/.vs
+MQTTLib/MqttClient/bin
+MQTTLib/MqttClient/obj
+MQTTLib/MqttClient/.vs
+PersonManagementService/.vs
+PersonManagementService/bin
+PersonManagementService/obj
+PersonManagementService/.vs
+ReportManagementService/bin
+ReportManagementService/obj
