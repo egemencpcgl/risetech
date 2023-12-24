@@ -69,14 +69,15 @@ namespace MqttClient
             return Task.CompletedTask;
         }
 
-        public static async Task SendTopicAsync(MessageTopic topicName, MessageType messagetype, byte[] data=null)
+        public static async Task SendTopicAsync(Guid messageId,MessageTopic topicName, MessageType messagetype, byte[] data=null)
         {
             try
             {
                 MqttMessage mqttMessage = new MqttMessage()
                 {
+                    MessageId = messageId,
                     MessageType = messagetype,
-                    Data = data
+                    MessageData = data
                 };
 
                 var rawmsg=JsonSerializer.Serialize(mqttMessage);

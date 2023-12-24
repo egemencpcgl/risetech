@@ -15,6 +15,7 @@ namespace MqttClient.Enums
     public enum MessageType
     {
         StatisticByLocation = 0,
+        GetStatisticsAllLocation=1
 
     }
 }

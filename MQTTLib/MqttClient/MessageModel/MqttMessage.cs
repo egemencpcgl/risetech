@@ -9,9 +9,10 @@ namespace MqttClient.MessageModel
 {
     public class MqttMessage
     {
+        public Guid MessageId { get; set; }
         public MessageTopic MessageTopic { get; set; }
         public MessageType MessageType { get; set; }
-        public byte[] Data { get; set; }
+        public byte[] MessageData { get; set; }
 
     }
 }
