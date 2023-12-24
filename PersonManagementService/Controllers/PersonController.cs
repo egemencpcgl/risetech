@@ -19,6 +19,7 @@ namespace PersonServices.Controllers
         public async Task<IActionResult> GetAllWithOutContact()
         {
             var response = await _personService.GetAllWOCAsync();
+
             return new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
@@ -31,7 +32,6 @@ namespace PersonServices.Controllers
         {
             var response = await _personService.GetAllWCAsync();
 
-
             return new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
@@ -43,6 +43,7 @@ namespace PersonServices.Controllers
         public async Task<IActionResult> Get(Guid id)
         {
             var response = await _personService.GetByIdAsync(id);
+
             return new ObjectResult(response)
             {
                 StatusCode = response.StatusCode

@@ -34,7 +34,11 @@ namespace ReportManagementService.Services
             Client._mqttClient.ApplicationMessageReceivedAsync += _mqttClient_ApplicationMessageReceivedAsync;
             Client.SubscribeTopics(MessageTopic.Response.ToString());
         }
-
+        /// <summary>
+        /// Sub olunan topicler yakalanır.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
         private static Task _mqttClient_ApplicationMessageReceivedAsync(MQTTnet.Client.MqttApplicationMessageReceivedEventArgs arg)
         {
             var payload = arg.ApplicationMessage?.Payload == null ? null : Encoding.UTF8.GetString(arg.ApplicationMessage?.Payload);
@@ -58,7 +62,12 @@ namespace ReportManagementService.Services
             }
             return Task.CompletedTask;
         }
-
+        /// <summary>
+        /// Rapor sonucu kisi servisinden gelen yanıta gore guncellenir.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="correctcompleted"></param>
+        /// <returns></returns>
         static bool CheckReportStatusAndUpdate(Guid id, bool correctcompleted)
         {
             try
@@ -82,9 +91,13 @@ namespace ReportManagementService.Services
             {
                 return false;
             }
-
         }
-
+        /// <summary>
+        /// Tamamlanan rapor detayı kaydedilir.
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <param name="details"></param>
+        /// <returns></returns>
         static bool SaveReportDetail(Guid messageId,List<Tuple<string,int,int>> details)
         {
             try
@@ -109,7 +122,11 @@ namespace ReportManagementService.Services
             }
         }
 
-
+        /// <summary>
+        /// Olusturulan rapor eklenir.
+        /// </summary>
+        /// <param name="reportDto"></param>
+        /// <returns></returns>
         public Report CreatReport(ReportDto reportDto)
         {
             var report = _mapper.Map<Report>(reportDto);
@@ -117,13 +134,20 @@ namespace ReportManagementService.Services
             PgDbContext.SaveChangesAsync();
             return report;
         }
-
+        /// <summary>
+        /// Tum raporları listeler
+        /// </summary>
+        /// <returns></returns>
         public async Task<Response<List<ReportDto>>> GetAllReadyReports()
         {
             var report = await PgDbContext.Reports.ToListAsync();
             return Response<List<ReportDto>>.Success(_mapper.Map<List<ReportDto>>(report), 200);
         }
-
+        /// <summary>
+        /// Hazır olan raporlardan Id'si girilen raporun detayı getirilir.
+        /// </summary>
+        /// <param name="reportID"></param>
+        /// <returns></returns>
         public async Task<Response<List<ReportDetailDto>>> GetReadyReportDetail(Guid reportID)
         {
             try
@@ -136,13 +160,16 @@ namespace ReportManagementService.Services
                 }
                 return Response<List<ReportDetailDto>>.Fail("Report not found", 404);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Response<List<ReportDetailDto>>.Fail("Report not found", 404);
+                return Response<List<ReportDetailDto>>.Fail("Report not found. Ex: " + ex.Message, 404);
             }
 
         }
-
+        /// <summary>
+        /// Tum sehirlerin istatistiklerini getirir.
+        /// </summary>
+        /// <returns></returns>
         public async Task<Response<List<ReportDto>>> GetStatisticsAllLocation()
         {
             try
@@ -158,12 +185,16 @@ namespace ReportManagementService.Services
                 await Client.SendTopicAsync(reportid, MessageTopic.Request, MessageType.GetStatisticsAllLocation);
                 return Response<List<ReportDto>>.Success(200);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Response<List<ReportDto>>.Fail("Report not created", 400);
+                return Response<List<ReportDto>>.Fail("Report not created. Ex: " + ex.Message, 400);
             }
         }
-
+        /// <summary>
+        /// Girilen sehirin istatistiklerini getirir.
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public async Task<Response<ReportDto>> GetStatisticsByLocation(string location)
         {
             try
@@ -180,9 +211,9 @@ namespace ReportManagementService.Services
                 await Client.SendTopicAsync(reportid, MessageTopic.Request, MessageType.StatisticByLocation, data);
                 return Response<ReportDto>.Success(createdreport, 200);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Response<ReportDto>.Fail("Report not created", 400);
+                return Response<ReportDto>.Fail("Report not created. Ex: " + ex.Message, 400);
             }
         }
     }

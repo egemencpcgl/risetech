@@ -16,7 +16,7 @@ namespace MqttClient
         {
             _mqttClient = new MqttFactory().CreateManagedMqttClient();
 
-            // Create client options object
+            // Client icin ayarlar
             MqttClientOptionsBuilder builder = new MqttClientOptionsBuilder()
                                                     .WithClientId(clientID)
                                                     .WithTcpServer(ip, 5004);
@@ -27,7 +27,7 @@ namespace MqttClient
 
 
 
-            // Set up handlers
+            // Handler ayarlamaları
             _mqttClient.ConnectedAsync += _mqttClient_ConnectedAsync;
 
 
@@ -36,7 +36,7 @@ namespace MqttClient
 
             _mqttClient.ConnectingFailedAsync += _mqttClient_ConnectingFailedAsync;
 
-            // Connect to the broker
+            // Broker baglantisi
             await _mqttClient.StartAsync(options);
         }
 
@@ -55,20 +55,23 @@ namespace MqttClient
             Console.WriteLine("Connection failed check network or broker!");
             return Task.CompletedTask;
         }
-
+        /// <summary>
+        /// Clientların ilgili topiclere subscribe islemini gerceklestirir.
+        /// </summary>
+        /// <param name="topicName"></param>
         public static void SubscribeTopics(string topicName)
         {
             _mqttClient.SubscribeAsync(topicName, MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce);
 
         }
-        public Task _mqttClient_ApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs arg)
-        {
-            var payload = arg.ApplicationMessage?.Payload == null ? null : Encoding.UTF8.GetString(arg.ApplicationMessage?.Payload);
-            var messageModel = JsonSerializer.Deserialize<string>(payload);
-
-            return Task.CompletedTask;
-        }
-
+        /// <summary>
+        /// Clientlardan Brokera mesaj gönderilir.
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <param name="topicName"></param>
+        /// <param name="messagetype"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static async Task SendTopicAsync(Guid messageId,MessageTopic topicName, MessageType messagetype, byte[] data=null)
         {
             try

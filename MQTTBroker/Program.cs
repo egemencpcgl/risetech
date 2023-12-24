@@ -13,27 +13,26 @@ namespace MQTTBroker
             StartBroker();
         }
 
-        private static readonly object LockObj = new object();
-
         public async static void StartBroker()
         {
-            // Create the options for MQTT Broker
+            // MQTT Broker icin ayarlamalar
             var options = new MqttServerOptionsBuilder()
-                //Set endpoint to localhost
+                //localhost icin endpoint
                 .WithDefaultEndpoint().WithDefaultEndpointPort(5004);
-            // Create a new mqtt server
+
             server = new MqttFactory().CreateMqttServer(options.Build());
-            //Add Interceptor for logging incoming messages
+
+            //kullanılabilecek event tanımlamarı
             server.InterceptingPublishAsync += Server_InterceptingPublishAsync;
             server.ClientConnectedAsync += Server_ClientConnectedAsync;
             server.ClientDisconnectedAsync += Server_ClientDisconnectedAsync;
             server.ClientSubscribedTopicAsync += Server_ClientSubscribedTopicAsync;
             server.ClientAcknowledgedPublishPacketAsync += Server_ClientAcknowledgedPublishPacketAsync;
-            // Start the server
+            // Brokeri baslat
             await server.StartAsync();
-            // Keep application running until user press a key
-            Console.ReadLine();
 
+
+            Console.ReadLine();
         }
 
         private static Task Server_ClientDisconnectedAsync(ClientDisconnectedEventArgs arg)
@@ -54,11 +53,18 @@ namespace MQTTBroker
 
         private static Task Server_InterceptingPublishAsync(InterceptingPublishEventArgs arg)
         {
-            // Convert Payload to string
+            // Broker tarafında mesaj ile ilgili bir publish disinda bir islem yapılacaksa buradan yapilabilir.
+            // Simdilik gerek yok...
             var payload = arg.ApplicationMessage?.Payload == null ? null : Encoding.UTF8.GetString(arg.ApplicationMessage?.Payload);
-            
+
             return Task.CompletedTask;
         }
+
+        /// <summary>
+        /// Yeni baglanan Clientlar yakalanır.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
         private static Task Server_ClientConnectedAsync(ClientConnectedEventArgs arg)
         {
             var clients = server.GetClientsAsync();

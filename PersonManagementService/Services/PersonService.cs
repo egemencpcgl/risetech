@@ -15,54 +15,114 @@ namespace PersonServices.Services
         public PersonService(IMapper mapper)
         {
             PgDbContext = new PgDbContext();
-            _mapper=mapper;
+            _mapper = mapper;
         }
+        /// <summary>
+        /// Girilen kisi bilgilerini kaydeder.
+        /// </summary>
+        /// <param name="personDto"></param>
+        /// <returns></returns>
         public async Task<Response<PersonDto>> CreateAsync(PersonDto personDto)
         {
-            var person = _mapper.Map<Person>(personDto);
-            await PgDbContext.Persons.AddAsync(person);
-            await PgDbContext.SaveChangesAsync();
-            return Response<PersonDto>.Success(_mapper.Map<PersonDto>(person), 200);
-        }
-
-        public async Task<Response<PersonDto>> DeleteAsync(Guid id)
-        {
-            var person = PgDbContext.Persons.Where(x=>x.Id==id).FirstOrDefault();
-
-            if (person != null)
+            try
             {
-                PgDbContext.Persons.Remove(person);
+                var person = _mapper.Map<Person>(personDto);
+                await PgDbContext.Persons.AddAsync(person);
                 await PgDbContext.SaveChangesAsync();
-
-                return Response<PersonDto>.Success(200);
-            }
-            return Response<PersonDto>.Fail("Person not found",404);
-        }
-
-        public async Task<Response<List<PersonDto>>> GetAllWOCAsync()
-        {
-            var persons = await PgDbContext.Persons.ToListAsync();
-            return Response<List<PersonDto>>.Success(_mapper.Map<List<PersonDto>>(persons), 200);
-        }
-        public async Task<Response<List<PersonDto>>> GetAllWCAsync()
-        {
-            var persons = await PgDbContext.Persons.ToListAsync();
-            foreach (var person in persons)
-            {
-                person.ContactInformation = PgDbContext.Contacts.Where(x => x.PersonId == person.Id).ToList();
-            }
-
-            return Response<List<PersonDto>>.Success(_mapper.Map<List<PersonDto>>(persons), 200);
-        }
-        public async Task<Response<PersonDto>> GetByIdAsync(Guid id)
-        {
-            var person = PgDbContext.Persons.Where(x => x.Id == id).FirstOrDefault();
-            person.ContactInformation= PgDbContext.Contacts.Where(x => x.PersonId == person.Id).ToList();
-            if (person != null)
-            {
                 return Response<PersonDto>.Success(_mapper.Map<PersonDto>(person), 200);
             }
-            return Response<PersonDto>.Fail("Person not found", 404);
+            catch (Exception ex)
+            {
+                return Response<PersonDto>.Fail("Person not created. Ex: " + ex.Message, 400);
+            }
+        }
+        /// <summary>
+        /// Girilen Id'nin kişi bilgilerini siler
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Response<PersonDto>> DeleteAsync(Guid id)
+        {
+            try
+            {
+                var person = PgDbContext.Persons.Where(x => x.Id == id).FirstOrDefault();
+
+                if (person != null)
+                {
+                    PgDbContext.Persons.Remove(person);
+                    await PgDbContext.SaveChangesAsync();
+
+                    return Response<PersonDto>.Success(200);
+                }
+                return Response<PersonDto>.Fail("Person not found", 404);
+            }
+            catch (Exception ex)
+            {
+                return Response<PersonDto>.Fail("Person not found. Ex: " + ex.Message, 404);
+            }
+
+        }
+        /// <summary>
+        /// Kisi listesini iletisim bilgisi olmadan getirir 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Response<List<PersonDto>>> GetAllWOCAsync()
+        {
+            try
+            {
+                var persons = await PgDbContext.Persons.ToListAsync();
+                return Response<List<PersonDto>>.Success(_mapper.Map<List<PersonDto>>(persons), 200);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<PersonDto>>.Fail("Person list not found. Ex: " + ex.Message, 404);
+
+            }
+
+        }
+        /// <summary>
+        /// Kisi listesini iletisim bilgisiyle birlikte getirir
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Response<List<PersonDto>>> GetAllWCAsync()
+        {
+            try
+            {
+                var persons = await PgDbContext.Persons.ToListAsync();
+                foreach (var person in persons)
+                {
+                    person.ContactInformation = PgDbContext.Contacts.Where(x => x.PersonId == person.Id).ToList();
+                }
+
+                return Response<List<PersonDto>>.Success(_mapper.Map<List<PersonDto>>(persons), 200);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<PersonDto>>.Fail("Person list not found. Ex: "+ex.Message, 404);
+            }
+        }
+        /// <summary>
+        /// Girilen Id'nin bilgilerini getirir. Hata durumunda 404 doner
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Response<PersonDto>> GetByIdAsync(Guid id)
+        {
+            try
+            {
+                var person = PgDbContext.Persons.Where(x => x.Id == id).FirstOrDefault();
+                person.ContactInformation = PgDbContext.Contacts.Where(x => x.PersonId == person.Id).ToList();
+                if (person != null)
+                {
+                    return Response<PersonDto>.Success(_mapper.Map<PersonDto>(person), 200);
+                }
+                return Response<PersonDto>.Fail("Person not found", 404);
+            }
+            catch (Exception ex)
+            {
+                return Response<PersonDto>.Fail("Person not found. Ex: " + ex.Message, 404);
+            }
+
         }
     }
 }

@@ -19,6 +19,7 @@ namespace PersonServices.Controllers
         public async Task<IActionResult> GetAll()
         {
             var response = await _contactInfoService.GetAllAsync();
+
             return new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
@@ -52,6 +53,7 @@ namespace PersonServices.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var response = await _contactInfoService.DeleteAsync(id);
+
             return new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
