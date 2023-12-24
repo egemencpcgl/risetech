@@ -16,8 +16,10 @@
 # KURULUM
 
 1. Projeyi bilgisayarınıza klonlayın.
-    git clone https://github.com/egemencpcgl/risetech.git
-2. Veritabanı backup dosyasını PostgreSQL içinde restore işlemini gerçekleştirin.
+   
+       git clone https://github.com/egemencpcgl/risetech.git
+   
+3. Veritabanı backup dosyasını PostgreSQL içinde restore işlemini gerçekleştirin.
 
 # AYARLAR
 
