@@ -39,19 +39,27 @@ namespace PersonServices.Services
             return Response<PersonDto>.Fail("Person not found",404);
         }
 
-        public async Task<Response<List<PersonDto>>> GetAllAsync()
+        public async Task<Response<List<PersonDto>>> GetAllWOCAsync()
         {
             var persons = await PgDbContext.Persons.ToListAsync();
             return Response<List<PersonDto>>.Success(_mapper.Map<List<PersonDto>>(persons), 200);
         }
+        public async Task<Response<List<PersonDto>>> GetAllWCAsync()
+        {
+            var persons = await PgDbContext.Persons.ToListAsync();
+            foreach (var person in persons)
+            {
+                person.ContactInformation = PgDbContext.Contacts.Where(x => x.PersonId == person.Id).ToList();
+            }
 
+            return Response<List<PersonDto>>.Success(_mapper.Map<List<PersonDto>>(persons), 200);
+        }
         public async Task<Response<PersonDto>> GetByIdAsync(Guid id)
         {
             var person = PgDbContext.Persons.Where(x => x.Id == id).FirstOrDefault();
-
+            person.ContactInformation= PgDbContext.Contacts.Where(x => x.PersonId == person.Id).ToList();
             if (person != null)
             {
-                PgDbContext.Persons.Remove(person);
                 return Response<PersonDto>.Success(_mapper.Map<PersonDto>(person), 200);
             }
             return Response<PersonDto>.Fail("Person not found", 404);

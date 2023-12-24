@@ -54,3 +54,7 @@ C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\obj\Debug\net6.0\r
 C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\obj\Debug\net6.0\PersonServices.pdb
 C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\obj\Debug\net6.0\PersonServices.genruntimeconfig.cache
 C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\obj\Debug\net6.0\ref\PersonServices.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\bin\Debug\net6.0\MQTTnet.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\bin\Debug\net6.0\MQTTnet.Extensions.ManagedClient.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\bin\Debug\net6.0\MqttClient.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\PersonManagementService\bin\Debug\net6.0\MqttClient.pdb

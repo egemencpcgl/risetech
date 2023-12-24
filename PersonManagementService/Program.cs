@@ -11,9 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
+builder.Services.AddScoped<IMqttClientService, MqttClientService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-
+MqttClientService.InitMqttClient();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

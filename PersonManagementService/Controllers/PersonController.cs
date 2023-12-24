@@ -15,14 +15,29 @@ namespace PersonServices.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [Route("/withoutcontactinfo")]
+        public async Task<IActionResult> GetAllWithOutContact()
         {
-            var response = await _personService.GetAllAsync();
+            var response = await _personService.GetAllWOCAsync();
             return new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
             };
         }
+
+        [HttpGet]
+        [Route("/withcontactinfo")]
+        public async Task<IActionResult> GetAllWithContact()
+        {
+            var response = await _personService.GetAllWCAsync();
+
+
+            return new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+        }
+
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> Get(Guid id)

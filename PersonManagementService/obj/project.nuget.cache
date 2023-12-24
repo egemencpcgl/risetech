@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W5RWhA670a2TqMmAPf9DJRgyqBpHd1/zHlnPT1/LPdf96us6je/yNBN3bQxmhcb9DP6wA2YJtCTU2XeTGxqK+Q==",
+  "dgSpecHash": "1tsFmfva0VYBs1nCC/hhoxdODvU3lo5HwngFnK1uuDIk7S5f226r1Mxs9T7XRTFTQeWG9rvayq6ubN2t6Nqh0g==",
   "success": true,
   "projectFilePath": "C:\\Users\\iotech\\Desktop\\RISETECH\\Rise\\PersonManagementService\\PersonServices.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,8 @@
     "C:\\Users\\iotech\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\iotech\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\iotech\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\iotech\\.nuget\\packages\\mqttnet\\4.3.3.952\\mqttnet.4.3.3.952.nupkg.sha512",
+    "C:\\Users\\iotech\\.nuget\\packages\\mqttnet.extensions.managedclient\\4.3.3.952\\mqttnet.extensions.managedclient.4.3.3.952.nupkg.sha512",
     "C:\\Users\\iotech\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\iotech\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\iotech\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
