@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: RISE
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    networks:
+      microservices-network:
+        ipv4_address: 172.25.0.2
+
+  service1:
+    build:
+      context: .
+      dockerfile: Dockerfile-Person
+    image: personservices
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+       DATABASE_URL: postgres://postgres:123456@postgres:5432/RISE
+       ConnectionString: Server=172.25.0.2;Port=5432;Database=RISE;User ID=postgres;Password=123456
+       BrokerIp: "172.25.0.5"
+    ports:
+      - "5011:80"
+    networks:
+      microservices-network:
+        ipv4_address: 172.25.0.3
+
+  service2:
+    build:
+      context: .
+      dockerfile: Dockerfile-Report
+    image: reportmanagementservice
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+       DATABASE_URL: postgres://postgres:123456@postgres:5432/RISE
+       ConnectionString: Server=172.25.0.2;Port=5432;Database=RISE;User ID=postgres;Password=123456
+       BrokerIp: "172.25.0.5"
+    ports:
+      - "5012:80"
+    networks:
+      microservices-network:
+        ipv4_address: 172.25.0.4
+
+  console-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-Mqtt
+    image: mqttbroker
+    restart: always
+    ports:
+      - "5004:5004"
+    networks:
+       microservices-network:
+        ipv4_address: 172.25.0.5
+
+networks:
+  microservices-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.25.0.0/16"

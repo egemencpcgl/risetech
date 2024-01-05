@@ -1,0 +1,12 @@
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\bin\Release\net6.0\MqttClient.deps.json
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\bin\Release\net6.0\MqttClient.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\bin\Release\net6.0\MqttClient.pdb
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.csproj.AssemblyReference.cache
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.AssemblyInfoInputs.cache
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.AssemblyInfo.cs
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.csproj.CoreCompileInputs.cache
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\refint\MqttClient.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\MqttClient.pdb
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTLib\MqttClient\obj\Release\net6.0\ref\MqttClient.dll

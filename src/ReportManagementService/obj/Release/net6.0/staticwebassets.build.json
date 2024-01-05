@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8jII04WySr6RNbVyCkIYoAFD+8/vHDzQt0zZ1Nk9hxw=",
+  "Source": "ReportManagementService",
+  "BasePath": "_content/ReportManagementService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
