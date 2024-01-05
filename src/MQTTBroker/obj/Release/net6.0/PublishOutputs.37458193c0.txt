@@ -1,0 +1,4 @@
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTBroker\obj\Docker\publish\MQTTBroker.dll
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTBroker\obj\Docker\publish\MQTTBroker.deps.json
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTBroker\obj\Docker\publish\MQTTBroker.pdb
+C:\Users\iotech\Desktop\RISETECH\Rise\src\MQTTBroker\obj\Docker\publish\MQTTnet.dll
