@@ -7,8 +7,8 @@
 # PROJE AÇIKLAMASI
 
 **Proje iki mikroservisten oluşan telefon rehberi servisidir.**
-1. Mikroservis kişi yönetimi ve iletişim bilgilerinin yönetildiği servistir.
-2. Mikroservis raporların yönetildiği ve sunulduğu servistir.
+1. PersoneManagementService kişi yönetimi ve iletişim bilgilerinin yönetildiği servistir.
+2. ReportManagementService raporların yönetildiği ve sunulduğu servistir.
 3. Servislere HTTP üzerinden iletişim sağlanır.
 4. Servisler arası iletişim MQTT ile sağlanmıştır.
 
@@ -19,9 +19,13 @@
    
        git clone https://github.com/egemencpcgl/risetech.git
    
-3. Veritabanı backup dosyasını PostgreSQL içinde restore işlemini gerçekleştirin.
+2. Docker compose ile tüm servisleri çalıştırın.
 
-# AYARLAR
+        docker-compose up
 
-Klonlama işleminden sonra MQTTBroker projesini çalıştırın, ardından servisler çalıştırıldığında Broker'a otomatik bağlancak ve ilgili portlarda API'lar açılacaktır.
-Endpointlere yapılacak isteklerle kullanılabilir. Broker çalışmadığında da servisler kullanılabilir ancak bir birileri ile haberleşme sağlanamaz..
+3. Web servisler 5011 ve 5012 numaralı portları kullanmakta ve swagger mevcut.
+ - http://localhost:5011/swagger/index.html
+ - http://localhost:5012/swagger/index.html
+adreslerine giderek endpointlere erişebilirsiniz.
+
+
