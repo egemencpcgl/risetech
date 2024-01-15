@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestPersonService
+namespace TestPersonService.BaseFixtures
 {
     public class PersonBaseFixture : IDisposable
     {
