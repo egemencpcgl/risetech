@@ -15,6 +15,7 @@ using PersonServices.Interfaces;
 using PersonServices.Model;
 using PersonServices.Responses;
 using PersonServices.Services;
+using TestPersonService.BaseFixtures;
 using Xunit;
 
 

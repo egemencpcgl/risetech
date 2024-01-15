@@ -5,6 +5,7 @@ using ReportManagementService.Dtos;
 using ReportManagementService.Interfaces;
 using ReportManagementService.Models;
 using ReportManagementService.Responses;
+using TestReportService.BaseFixtures;
 
 namespace TestReportService
 {
