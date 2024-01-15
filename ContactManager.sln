@@ -7,25 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84DB40DF-768
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{191A1872-7439-4DC0-AB85-7AE97EF7F4D7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MQTTBroker", "MQTTBroker", "{FF5B685E-E93A-49A7-8088-80192468725F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportConsumer", "ReportConsumer", "{FF5B685E-E93A-49A7-8088-80192468725F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MQTTLib", "MQTTLib", "{C3315CA3-7676-44BE-BBFC-5B8181BAD22F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C3315CA3-7676-44BE-BBFC-5B8181BAD22F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonManagementService", "PersonManagementService", "{EB321270-72F6-4A0C-8507-9BEA15C21906}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonService", "PersonService", "{EB321270-72F6-4A0C-8507-9BEA15C21906}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportManagementService", "ReportManagementService", "{336F0204-A5F8-48E2-A696-5CDBCC127543}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportService", "ReportService", "{336F0204-A5F8-48E2-A696-5CDBCC127543}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestPersonService", "TestPersonService", "{33FA5279-4CB6-479B-86EC-6FA15948F98D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestReportService", "TestReportService", "{C42A6C7E-BA77-4D49-89FB-0961C08D7430}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQTTBroker", "src\MQTTBroker\MQTTBroker.csproj", "{0A340B3F-13F3-4D1B-837C-7D88DA84D953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MQTTBroker", "src\ReportConsumer\MQTTBroker.csproj", "{0A340B3F-13F3-4D1B-837C-7D88DA84D953}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqttClient", "src\MQTTLib\MqttClient\MqttClient.csproj", "{1B7E062D-C8E0-4FEC-82B1-CD2DA58CC3E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqttClient", "src\Core\MqttClient\MqttClient.csproj", "{1B7E062D-C8E0-4FEC-82B1-CD2DA58CC3E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonServices", "src\PersonManagementService\PersonServices.csproj", "{4F37EE57-0ED3-493A-BA04-8C021B454A6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonServices", "src\PersonService\PersonServices.csproj", "{4F37EE57-0ED3-493A-BA04-8C021B454A6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportManagementService", "src\ReportManagementService\ReportManagementService.csproj", "{C066DEB8-F29B-4412-89D5-B9052FC34169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportManagementService", "src\ReportService\ReportManagementService.csproj", "{C066DEB8-F29B-4412-89D5-B9052FC34169}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPersonService", "test\TestPersonService\TestPersonService.csproj", "{8F54B496-E7CC-440C-B8FC-6D9A5506BA72}"
 EndProject

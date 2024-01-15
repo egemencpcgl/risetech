@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,54 +20,52 @@ using Xunit;
 
 namespace TestPersonService
 {
-    public class TestPersonController
+    public class TestPersonController : IClassFixture<PersonBaseFixture>
     {
+        PersonBaseFixture baseFixture;
+        public TestPersonController(PersonBaseFixture _basefixture)
+        {
+            baseFixture = _basefixture;
+        }
+
         [Fact]
         public async Task CreateAsync_ShouldReturnSuccessResponse()
         {
-
             //Arrange
             PersonDto testperson = new PersonDto { FirstName = "Egemen", LastName = "Capacioglu" };
-            
+
             var successReturn = Response<PersonDto>.Success(testperson, 200);
             var expected = new ObjectResult(successReturn)
             {
                 StatusCode = successReturn.StatusCode
             };
-            var dataStore = A.Fake<IPersonService>();
-            var mqttStore = A.Fake<IMqttClientService>();
-
-            A.CallTo(() => dataStore.CreateAsync(testperson)).Returns(successReturn);
-            var controller = new PersonController(dataStore);
-
             //Act
-            var actionResult = controller.Create(testperson);
-           
+            A.CallTo(() => baseFixture.datastore.CreateAsync(testperson)).Returns(successReturn);
+
+            var actionResult = await baseFixture.controller.Create(testperson);
+
             //Assert
-            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult.Result).StatusCode);
+            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult).StatusCode);
         }
 
         [Fact]
         public async Task DeleteAsync_ShouldReturnSuccessResponse()
         {
             //Arrange
-            PersonDto testperson = new PersonDto {Id=Guid.NewGuid(), FirstName = "Egemen", LastName = "Capacioglu" };
-
-            var successReturn = Response<PersonDto>.Success(testperson, 200);
+            Person testperson = new Person { Id = Guid.NewGuid(), FirstName = "Egemen", LastName = "Capacioglu" };
+            var successReturn = Response<Person>.Success(testperson, 200);
             var expected = new ObjectResult(successReturn)
             {
                 StatusCode = successReturn.StatusCode
             };
-            var dataStore = A.Fake<IPersonService>();
-            var mqttStore = A.Fake<IMqttClientService>();
-            A.CallTo(() => dataStore.DeleteAsync(testperson.Id)).Returns(successReturn);
-            var controller = new PersonController(dataStore);
 
             //Act
-            var actionResult = controller.Delete(testperson.Id);
+            A.CallTo(() => baseFixture.datastore.DeleteAsync(testperson.Id)).Returns(successReturn);
+            
+            var actionResult = await baseFixture.controller.Delete(testperson.Id);
 
             //Assert
-            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult.Result).StatusCode);
+            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult).StatusCode);
         }
 
         [Fact]
@@ -75,7 +74,7 @@ namespace TestPersonService
             //Arrange
             List<PersonDto> testperson = new List<PersonDto>
             {
-                new PersonDto{Id = Guid.NewGuid(), FirstName = "Egemen", LastName = "Capacioglu" }
+                new PersonDto{ FirstName = "Egemen", LastName = "Capacioglu" }
             };
 
             var successReturn = Response<List<PersonDto>>.Success(testperson, 200);
@@ -83,71 +82,70 @@ namespace TestPersonService
             {
                 StatusCode = successReturn.StatusCode
             };
-            var mqttStore = A.Fake<IMqttClientService>();
-            var dataStore = A.Fake<IPersonService>();
-
-            A.CallTo(() => dataStore.GetAllWOCAsync()).Returns(successReturn);
-            var controller = new PersonController(dataStore);
-
+           
             //Act
-            var actionResult = controller.GetAllWithOutContact();
+            A.CallTo(() => baseFixture.datastore.GetAllWOCAsync()).Returns(successReturn);
+
+            
+            var actionResult = await baseFixture.controller.GetAllWithOutContact();
 
             //Assert
-            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult.Result).StatusCode);
+            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult).StatusCode);
         }
 
         [Fact]
         public async Task GetAllWCAsync_ShouldReturnSuccessResponse()
         {
             //Arrange
-            List<PersonDto> testperson = new List<PersonDto>
+            List<Person> testperson = new List<Person>
             {
-                new PersonDto{Id = Guid.NewGuid(), FirstName = "Egemen", LastName = "Capacioglu" }
+                new Person
+                {
+                    Id = Guid.NewGuid(),
+                    FirstName = "Egemen",
+                    LastName = "Capacioglu"
+                }
             };
 
-            var successReturn = Response<List<PersonDto>>.Success(testperson, 200);
+            var successReturn = Response<List<Person>>.Success(testperson, 200);
             var expected = new ObjectResult(successReturn)
             {
                 StatusCode = successReturn.StatusCode
             };
-            var mqttStore = A.Fake<IMqttClientService>();
-            var dataStore = A.Fake<IPersonService>();
-
-            A.CallTo(() => dataStore.GetAllWCAsync()).Returns(successReturn);
-            var controller = new PersonController(dataStore);
 
             //Act
-            var actionResult = controller.GetAllWithContact();
+            A.CallTo(() => baseFixture.datastore.GetAllWCAsync()).Returns(successReturn);
+
+            var actionResult = await baseFixture.controller.GetAllWithContact();
 
             //Assert
-            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult.Result).StatusCode);
+            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult).StatusCode);
         }
 
         [Fact]
         public async Task GetByIdAsync_ShouldReturnSuccessResponse()
         {
             //Arrange
-            PersonDto testperson = new PersonDto
+            Person testperson = new Person
             {
-                Id = Guid.NewGuid(), FirstName = "Egemen", LastName = "Capacioglu" 
+                Id = Guid.NewGuid(),
+                FirstName = "Egemen",
+                LastName = "Capacioglu"
             };
 
-            var successReturn = Response<PersonDto>.Success(testperson, 200);
+            var successReturn = Response<Person>.Success(testperson, 200);
             var expected = new ObjectResult(successReturn)
             {
                 StatusCode = successReturn.StatusCode
             };
-            var mqttStore = A.Fake<IMqttClientService>();
-            var dataStore = A.Fake<IPersonService>();
-
-            A.CallTo(() => dataStore.GetByIdAsync(testperson.Id)).Returns(successReturn);
-            var controller = new PersonController(dataStore);
-
+            
             //Act
-            var actionResult = controller.Get(testperson.Id);
+            A.CallTo(() => baseFixture.datastore.GetByIdAsync(testperson.Id)).Returns(successReturn);
+
+            var actionResult = await baseFixture.controller.Get(testperson.Id);
 
             //Assert
-            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult.Result).StatusCode);
+            Assert.Equal(expected.StatusCode, ((ObjectResult)actionResult).StatusCode);
         }
     }
 }
