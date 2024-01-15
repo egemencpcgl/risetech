@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestReportService
+namespace TestReportService.BaseFixtures
 {
     public class BaseFixture : IDisposable
     {
@@ -24,7 +24,7 @@ namespace TestReportService
         {
             dataStore = A.Fake<IReportService>();
             reportController = new ReportController(dataStore);
-          
+
         }
         public void Dispose()
         {
