@@ -14,11 +14,11 @@ services:
       microservices-network:
         ipv4_address: 172.25.0.2
 
-  service1:
+  contact-service:
     build:
       context: .
-      dockerfile: Dockerfile-Person
-    image: personservices
+      dockerfile: Dockerfile-PersonService
+    image: contact-service
     restart: always
     depends_on:
       - postgres
@@ -32,11 +32,11 @@ services:
       microservices-network:
         ipv4_address: 172.25.0.3
 
-  service2:
+  report-service:
     build:
       context: .
-      dockerfile: Dockerfile-Report
-    image: reportmanagementservice
+      dockerfile: Dockerfile-ReportService
+    image: report-service
     restart: always
     depends_on:
       - postgres
@@ -50,11 +50,11 @@ services:
       microservices-network:
         ipv4_address: 172.25.0.4
 
-  console-app:
+  report-consumer:
     build:
       context: .
-      dockerfile: Dockerfile-Mqtt
-    image: mqttbroker
+      dockerfile: Dockerfile-ReportConsumer
+    image: report-consumer
     restart: always
     ports:
       - "5004:5004"
