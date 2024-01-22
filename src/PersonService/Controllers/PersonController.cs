@@ -51,7 +51,7 @@ namespace PersonServices.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(PersonDto persondto)
+        public async Task<IActionResult> Create(PersonCreateDto persondto)
         {
             var response = await _personService.CreateAsync(persondto);
 

@@ -11,6 +11,7 @@ using Moq;
 using PersonServices.Context;
 using PersonServices.Controllers;
 using PersonServices.Dto;
+using PersonServices.Dtos;
 using PersonServices.Interfaces;
 using PersonServices.Model;
 using PersonServices.Responses;
@@ -33,9 +34,9 @@ namespace TestPersonService
         public async Task CreateAsync_ShouldReturnSuccessResponse()
         {
             //Arrange
-            PersonDto testperson = new PersonDto { FirstName = "Egemen", LastName = "Capacioglu" };
+            PersonCreateDto testperson = new PersonCreateDto { FirstName = "Egemen", LastName = "Capacioglu" };
 
-            var successReturn = Response<PersonDto>.Success(testperson, 200);
+            var successReturn = Response<PersonCreateDto>.Success(testperson, 200);
             var expected = new ObjectResult(successReturn)
             {
                 StatusCode = successReturn.StatusCode
@@ -75,7 +76,7 @@ namespace TestPersonService
             //Arrange
             List<PersonDto> testperson = new List<PersonDto>
             {
-                new PersonDto{ FirstName = "Egemen", LastName = "Capacioglu" }
+                new PersonDto{ Id=Guid.NewGuid() ,FirstName = "Egemen", LastName = "Capacioglu" }
             };
 
             var successReturn = Response<List<PersonDto>>.Success(testperson, 200);

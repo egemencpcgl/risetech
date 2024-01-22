@@ -1,4 +1,5 @@
 ﻿using PersonServices.Dto;
+using PersonServices.Dtos;
 using PersonServices.Model;
 using PersonServices.Responses;
 
@@ -22,7 +23,7 @@ namespace PersonServices.Interfaces
         /// </summary>
         /// <param name="personDto"></param>
         /// <returns></returns>
-        Task<Response<PersonDto>> CreateAsync(PersonDto personDto);
+        Task<Response<PersonCreateDto>> CreateAsync(PersonCreateDto personDto);
         /// <summary>
         /// Girilen Id'nin bilgilerini getirir. Hata durumunda 404 doner
         /// </summary>
