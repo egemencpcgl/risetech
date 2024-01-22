@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PersonServices.Context;
 using PersonServices.Responses;
 using PersonServices.Interfaces;
+using PersonServices.Dtos;
 
 namespace PersonServices.Services
 {
@@ -22,19 +23,19 @@ namespace PersonServices.Services
         /// </summary>
         /// <param name="personDto"></param>
         /// <returns></returns>
-        public async Task<Response<PersonDto>> CreateAsync(PersonDto personDto)
+        public async Task<Response<PersonCreateDto>> CreateAsync(PersonCreateDto personDto)
         {
             try
             {
                 var person = _mapper.Map<Person>(personDto);
                 await PgDbContext.Persons.AddAsync(person);
                 await PgDbContext.SaveChangesAsync();
-                return Response<PersonDto>.Success(_mapper.Map<PersonDto>(person), 200);
+                return Response<PersonCreateDto>.Success(_mapper.Map<PersonCreateDto>(person), 200);
             }
             catch (Exception ex)
             {
                 PgDbContext.ChangeTracker.Clear();
-                return Response<PersonDto>.Fail("Person not created. Ex: " + ex.Message, 400);
+                return Response<PersonCreateDto>.Fail("Person not created. Ex: " + ex.Message, 400);
             }
         }
         /// <summary>
